@@ -3,19 +3,28 @@ from django.shortcuts import render
 from users.forms import RegisterForm
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_protect
+from django.shortcuts import redirect
+from .forms import NameForm
 # Create your views here.
+
+def home(request):
+    form = NameForm(request.POST or None)
+    return render(request,'users/home.html', {'form': form})
+
+def login(request):
+    return render(request, 'users/login.html')
 
 @csrf_protect
 def register(request):
     form = RegisterForm(request.POST or None)
     if request.method == 'POST':
         form = RegisterForm(request.POST)
-        print(form)
         if form.is_valid():
-            form.save()
             username = form.cleaned_data.get('username')
-            print(username)
-            import pdb;pdb.set_trace()
+            messages.success(request,f'welcome {username}')
+            form.save()
+            # url = 'https://www.facebook.com/'
+            return redirect('/login')
     return render (request, 'users/register.html', {'form': form})
 
 

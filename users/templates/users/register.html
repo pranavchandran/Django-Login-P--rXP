@@ -7,6 +7,10 @@
     <title>Document</title>
 </head>
 <body>
+    <style>
+        body {background-color: #6B5B95;color: #FFFFFF;}
+
+    </style>
     <nav class="navbar navbar-dark bg-primary">
         <a class="navbar-brand" href="#">Pranav C</a>
       </nav>
@@ -16,12 +20,12 @@
             {% csrf_token %}
               <div class="form-group">
                 <label for="username">Username</label>
-                <input id="username" type="text" class="form-control" name="username"" aria-describedby="emailHelp" placeholder="Enter username" required>
+                <input id="username" type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Enter username" required>
               </div>
 
               <div class="form-group">
                 <label for="email">Email</label>
-                <input id="email" type="password" class="form-control" name="email" id="exampleInputPassword1" placeholder="Password" required>
+                <input id="email" type="text" class="form-control" name="email" id="exampleInputPassword1" placeholder="Email" required>
               </div>
 
               <div class="form-group">
@@ -30,7 +34,7 @@
               </div>
 
                  <div class="form-group">
-                <label for="password1">Confirm Password</label>
+                <label for="password2">Confirm Password</label>
                 <input id="password2" type="password" class="form-control" name="password2" id="exampleInputPassword1" placeholder="confirm password" required>
               </div>
               {% if form.errors %}
@@ -40,7 +44,7 @@
                 {% endfor %}
                 {% endfor %}
               {% endif %}
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button style="margin-left: 45%;margin-top: 2%;" type="submit" class="btn btn-primary btn-lg">Sign Up</button>
             </form>
         </div>
     <!-- <form ALIGN='center' method="post">
