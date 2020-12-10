@@ -9,6 +9,23 @@ from .forms import NameForm
 
 def home(request):
     form = NameForm(request.POST or None)
+    if request.method == 'POST':
+        print('posted')
+        form = NameForm(request.POST)
+        if form.is_valid():
+            print('form valid')
+            username = form.cleaned_data.get('name')
+            email = form.cleaned_data.get('email')
+            departments = form.cleaned_data.get('departments')
+            all_category_choices = form.cleaned_data.get('all_category_choices')
+            pws_project_url = form.cleaned_data.get('pws_project_url')
+            subject = form.cleaned_data.get('subject')
+            description = form.cleaned_data.get('description')
+            all_priority = form.cleaned_data.get('all_priority')
+
+            
+
+            print(username, email, departments, all_category_choices, pws_project_url, subject, description, all_priority)
     return render(request,'users/home.html', {'form': form})
 
 def login(request):

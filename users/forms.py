@@ -48,7 +48,7 @@ class NameForm(forms.Form):
     pws_project_url = forms.URLField(max_length = 200, widget=forms.TextInput(attrs={'class':'form-control'}))
     subject = forms.CharField(max_length = 120, widget=forms.TextInput(attrs={'class':'form-control'}))
     description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
-    # chocies = forms.ChoiceField(choices=ORDER_STATUS_CHOICES)
+    # # chocies = forms.ChoiceField(choices=ORDER_STATUS_CHOICES)
     all_priority = forms.ChoiceField(choices=priority, widget=forms.Select(attrs={'class':'form-control'}))
 
     class Meta:
@@ -59,7 +59,8 @@ class NameForm(forms.Form):
             'all_category_choices',
             'pws_project_url',
             'subject',
-            'description'
+            'description',
+            'all_priority'
         ]
 
 # just refreshed the models
