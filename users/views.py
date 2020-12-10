@@ -5,7 +5,10 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import redirect
 from .forms import NameForm
+from django.contrib import messages
 # Create your views here.
+
+from .requesting import new_request
 
 def home(request):
     form = NameForm(request.POST or None)
@@ -22,9 +25,10 @@ def home(request):
             subject = form.cleaned_data.get('subject')
             description = form.cleaned_data.get('description')
             all_priority = form.cleaned_data.get('all_priority')
-
+            # messages.success(request, 'Ticket raised successfully',subject,description, extra_tags='alert')
+            messages.success(request, ['Ticket raised successfully','subject : ',subject, 'description :', description, new_request(request)], extra_tags='alert')
             
-
+            print(new_request(request))
             print(username, email, departments, all_category_choices, pws_project_url, subject, description, all_priority)
     return render(request,'users/home.html', {'form': form})
 
