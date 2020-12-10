@@ -16,7 +16,7 @@ def login(request):
 
 @csrf_protect
 def register(request):
-    form = RegisterForm(request.POST or None)
+    form = NameForm(request.POST or None)
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():

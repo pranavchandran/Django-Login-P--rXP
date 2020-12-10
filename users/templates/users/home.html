@@ -20,9 +20,12 @@
         {% block content %}
         {% if user.is_authenticated %}
         <p>Welcome, {{ user.get_username }}. Thanks for logging in.</p>
+        <div class="float-right">
+          <button type="button" class="btn btn-primary">Add Ticket</button>
+        </div>
 
-          
           <div class="form-group">
+
             <label for="formGroupExampleInput">User Name</label>
             <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input" value="{{ user.get_username }}">
           </div>
@@ -30,14 +33,46 @@
             <label for="formGroupExampleInput2">Email</label>
             <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input" value="{{ user.email }}">
           </div>
-
           {% else %}
           <p>Welcome, new user. Please log in.</p>
 
+          
         {% endif %}
-        <!-- {{ form.as_p}} -->
+        <label for="formGroupExampleInput2">Departments</label>
+        {{ form.departments}}
+
+        <label for="formGroupExampleInput2">Category</label>
+        {{ form.all_category_choices}}
+
+        <label for="formGroupExampleInput2">PWSLab Project URL</label>
+        {{form.pws_project_url}}
+
+        <label for="formGroupExampleInput2">Subject</label>
+        {{form.subject}}
+
+        <label for="formGroupExampleInput2">Description</label>
+
+        {{form.description}}
+
+        
         <!-- <a href='/download/'>Download</a> -->
         {% endblock %}
+
+        <!-- if you want a radio button style -->
+        <!-- <ul>
+          {% for choice in form.departments.field.choices %}
+            <li>
+              <input type="radio" name="departments" value="{{choice.0}}"
+                {% ifequal form.departments.data choice.0 %} 
+                   checked="checked"
+                {% endifequal %}/>
+              <label for="">{{choice.1}}</label>
+            </li>
+          {% endfor %}
+        </ul> -->
+        
+        
+        
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
