@@ -25,6 +25,13 @@ category_choices = (
     ('others', 'Others')
 )
 
+priority = (
+    ('none', '-None-'),
+    ('high', 'High - Production System Down'),
+    ('medium', 'Medium - System Impaired'),
+    ('low', 'Low - General Guidance')
+)
+
 class RegisterForm(UserCreationForm):
     username = forms.CharField(label = "User Name")
     email = forms.EmailField(label = "Email")
@@ -42,6 +49,7 @@ class NameForm(forms.Form):
     subject = forms.CharField(max_length = 120, widget=forms.TextInput(attrs={'class':'form-control'}))
     description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
     # chocies = forms.ChoiceField(choices=ORDER_STATUS_CHOICES)
+    all_priority = forms.ChoiceField(choices=priority, widget=forms.Select(attrs={'class':'form-control'}))
 
     class Meta:
         fields = [
