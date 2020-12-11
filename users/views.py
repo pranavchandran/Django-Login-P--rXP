@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 from .forms import NameForm
 from django.contrib import messages
 # Create your views here.
-
+import time
 from .requesting import new_request
 
 def home(request):
@@ -25,8 +25,11 @@ def home(request):
             subject = form.cleaned_data.get('subject')
             description = form.cleaned_data.get('description')
             all_priority = form.cleaned_data.get('all_priority')
+            time_tuple = time.localtime() # get struct_time
+            time_string = time.strftime("%m/%d/%Y, %H:%M:%S", time_tuple)
+
             # messages.success(request, 'Ticket raised successfully',subject,description, extra_tags='alert')
-            messages.success(request, ['Ticket raised successfully','subject : ',subject, 'description :', description, new_request(request)], extra_tags='alert')
+            messages.success(request, ['Ticket raised successfully','subject : ',subject, 'description :', description, new_request(request), time_string], extra_tags='alert')
             
             print(new_request(request))
             print(username, email, departments, all_category_choices, pws_project_url, subject, description, all_priority)
