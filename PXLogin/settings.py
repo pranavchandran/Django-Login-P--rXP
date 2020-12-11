@@ -102,7 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Login Redirect
 LOGIN_REDIRECT_URL = "/home"
-
+LOGOUT_REDIRECT_URL = '/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

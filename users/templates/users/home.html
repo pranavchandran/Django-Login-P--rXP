@@ -22,13 +22,19 @@
         {% block content %}
         {% if user.is_authenticated %}
         <p>Welcome, {{ user.get_username }}. Thanks for logging in.</p>
+        <p><a href="{% url 'logout' %}">Log Out</a></p>
         {% else %}
         <p>Welcome, new user. Please log in.</p>
+        <a href="{% url 'login' %}">Log In</a>
 
         
         {% endif %}  
             <form method="POST">
               {% csrf_token %}
+              <div class="form-group">
+                <div class="float-right">
+                  <button type="submit" class="btn btn-success">View Status</button>
+                </div>
               <div class="form-group">
                 <div class="float-right">
                   <button type="submit" class="btn btn-primary">Add Ticket</button>
@@ -70,13 +76,16 @@
           {% endfor %}
       </ul>
       {% endif %} -->
+      
       {% if messages %}
       <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
         <div class="card-header"></div>
         <div class="card-body">
           <h5 class="messages"></h5>
           {% for message in messages %}
-          <p class="messages">{{ message }}</p>
+          
+          <p class="messages">{{ message|safe }}</p>
+
         </div>
           {% endfor %}
         {% endif %}
