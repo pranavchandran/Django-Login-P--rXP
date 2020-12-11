@@ -16,15 +16,17 @@
   </head>
   
 
-  <body class='bg-dark text-white'>
+  <body class='bg-dark'>
     {% if messages %}
       <div class='container '>
         <div class="card mb-3">
-          <img class="card-img-top" src="..." alt="Card image cap">
+          <i class="fab fa-angrycreative"></i>
+          <!-- "{% static "my_app/example.jpg" %}" -->
+          <img class="card-img-top" src="{% static "users/browser.svg"%}" alt="Card image cap" width="200" height="100"> 
           <div class="card-body">
             <h5 class="card-title">Ticket Status Report</h5>
             {% for message in messages %}
-            <p class="messages" style="color: brown;">{{ message|safe }}</p>
+            <p class="messages" style="color: black;">{{ message|safe }}</p>
             <p class="card-text" style="color: brown;"><small class="text-muted"></small></p>
           </div>
           {% endfor %}
@@ -33,7 +35,7 @@
             
         {% block content %}
         {% if user.is_authenticated %}
-        <p>Welcome, {{ user.get_username }}. Thanks for logging in.</p>
+        <p style="color: #ffffff;">Welcome, {{ user.get_username }}. Thanks for logging in.</p>
         <p><a href="{% url 'logout' %}">Log Out</a></p>
         {% else %}
         <p>Welcome, new user. Please log in.</p>
@@ -51,30 +53,30 @@
                 <div class="float-right">
                   <button type="submit" class="btn btn-primary">Add Ticket</button>
                 </div>
-            <label for="name">User Name</label>
+            <label for="name" style="color: #ffffff;">User Name</label>
             <input type="text" class="form-control" name="name" id="username" placeholder="Example input" value="{{ user.get_username }}">
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
+            <label for="email" style="color: #ffffff;">Email</label>
             <input type="text" class="form-control" name="email" id="email" placeholder="Another input" value="{{ user.email }}">
           </div>
 
-        <label for="departments">Departments</label>
+        <label for="departments" style="color: #ffffff;">Departments</label>
         {{ form.departments }}
 
-        <label for="all_category_choices">Category</label>
+        <label for="all_category_choices" style="color: #ffffff;">Category</label>
         {{ form.all_category_choices }}
 
-        <label for="pws_project_url">PWSLab Project URL</label>
+        <label for="pws_project_url" style="color: #ffffff;">PWSLab Project URL</label>
         {{form.pws_project_url}}
 
-        <label for="formGroupExampleInput2">Subject</label>
+        <label for="subject" style="color: #ffffff;">Subject</label>
         {{form.subject}}
 
-        <label for="description">Description</label>
+        <label for="description" style="color: #ffffff;">Description</label>
         {{form.description}}
 
-        <label for="all_priority">Priority</label>
+        <label for="all_priority" style="color: #ffffff;">Priority</label>
         {{ form.all_priority }}
         <!-- {{ form.as_p }} -->
         <!-- <a href='/download/'>Download</a> -->
