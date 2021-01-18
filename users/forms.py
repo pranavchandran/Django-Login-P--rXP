@@ -1,8 +1,12 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
-# from .models import Person
-
+from .models import Status
+from django.forms import ModelForm
+all_status = (
+    ('closed', 'Closed'),
+    ('open', 'open')
+)
 
 department_choices = (
     ('pwslabdevops', 'PWSLab DevOps Support'),
@@ -33,6 +37,14 @@ priority = (
     ('low', 'Low - General Guidance')
 )
 
+ticket_status = (
+    ('created', 'Created'),
+    ('open', 'Open'),
+    ('close', 'Close'),
+    ('error', 'Error'),
+    
+)
+
 class RegisterForm(UserCreationForm):
     username = forms.CharField(label = "User Name")
     email = forms.EmailField(label = "Email")
@@ -41,28 +53,51 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ('username','email','password1','password2')
 
-class NameForm(forms.Form):
-    name = forms.CharField(label='Your name', max_length=100)
-    email = forms.EmailField(label = "Email")
-    departments = forms.ChoiceField(choices=department_choices, widget=forms.Select(attrs={'class':'form-control'}))
-    all_category_choices = forms.ChoiceField(choices=category_choices, widget=forms.Select(attrs={'class':'form-control'}))
-    pws_project_url = forms.URLField(max_length = 200, widget=forms.TextInput(attrs={'class':'form-control'}))
-    subject = forms.CharField(max_length = 120, widget=forms.TextInput(attrs={'class':'form-control'}))
-    description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
-    # # chocies = forms.ChoiceField(choices=ORDER_STATUS_CHOICES)
-    all_priority = forms.ChoiceField(choices=priority, widget=forms.Select(attrs={'class':'form-control'}))
+# class NameForm(forms.ModelForm):
+#     name = forms.CharField(label='Your name', max_length=100)
+#     email = forms.EmailField(label = "Email")
+#     departments = forms.ChoiceField(choices=department_choices, widget=forms.Select(attrs={'class':'form-control'}))
+#     all_category_choices = forms.ChoiceField(choices=category_choices, widget=forms.Select(attrs={'class':'form-control'}))
+#     pws_project_url = forms.URLField(max_length = 200, widget=forms.TextInput(attrs={'class':'form-control'}))
+#     subject = forms.CharField(max_length = 120, widget=forms.TextInput(attrs={'class':'form-control'}))
+#     description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
+#     # # chocies = forms.ChoiceField(choices=ORDER_STATUS_CHOICES)
+#     all_priority = forms.ChoiceField(choices=priority, widget=forms.Select(attrs={'class':'form-control'}))
+#     all_ticket_status = forms.ChoiceField(choices=ticket_status, widget=forms.Select(attrs={'class':'form-control'}))
 
+    # class Meta:
+        # model = Status
+        # fields = [
+        #     'name',
+        #     'email',
+        #     'departments',
+        #     'all_category_choices',
+        #     'pws_project_url',
+        #     'subject',
+        #     'description',
+        #     'all_priority',
+        #     'all_ticket_status',
+        # ]
+
+    
+class ContractForm(ModelForm):
     class Meta:
+        model = Status
         fields = [
+            # 'status',
             'name',
             'email',
             'departments',
-            'all_category_choices',
-            'pws_project_url',
-            'subject',
-            'description',
-            'all_priority'
+            # 'all_category_choices',
+            # 'pws_project_url',
+            # 'subject',
+            # 'description',
+            # 'all_priority',
+            # 'all_ticket_status',
         ]
+
+        # def __init__(self, *args, **kwargs):
+        #     super(ContractForm, self).__init__(*args, **kwargs)
 
 # just refreshed the models
 # class PersonForm(forms.ModelForm):

@@ -34,3 +34,4 @@ def new_request(request):
 
     else:
         print("Request not successful,Response code ",request.status_code," \nResponse : ",request.content)
+
